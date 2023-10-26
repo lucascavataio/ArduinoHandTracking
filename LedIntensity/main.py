@@ -5,11 +5,17 @@ import mediapipe as mp
 import math
 
 # Initialize Arduino board and LED pin
+"""Verify the name of the port of your Arduino microcontroller. You can find it
+in 'Device Manager', in the 'COM and LPT Ports' section on Windows,
+on Mac I have no idea, ask ChatGPT... In my case is 'COM3'. """
 board = pyfirmata2.Arduino('COM3')
+
+# The LED must be connected to a PWM pin, otherwise the intensity cannot be controlled
 targetLedPin = board.get_pin('d:10:p')
+
 targetLedIntensity = 0
 
-# Initialize video capture
+# Initialize video capture, if
 videoCap = cv2.VideoCapture(0)
 
 # Initialize MediaPipe Hands
